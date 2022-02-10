@@ -1,0 +1,45 @@
+.wave-list--container{
+  display: flex;
+  flex-direction: column;
+}
+
+.wave-list--container .wave-list__headers--wlc{
+  display: flex;
+  flex-direction: row;  
+}
+.wave-list--container .ca__heading--wlc{
+  height: 50px;
+  padding: 10px;
+  margin-top: 5px;
+  font-weight: bold;
+}
+.wave-list--container .wave-list__record--wlc:nth-child(odd){
+  background-color: #EDEDED;
+}
+
+.wave-list--container .wave-list__record--wlc:hover{
+  background-color: #E0E0E0;
+}
+
+.wave-list--container .wave-list__record--wlc{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-radius: 8px;
+}
+.wave-list--container .wave-list-record__item--wlc{
+  padding: 10px;
+  align-items: center;
+}
+.wave-list--container .ca-child-a--wlc, .wave-list-record__msg--wlc{
+  flex: 0 0 55%;
+}
+.wave-list--container .ca-child-b__heading--wlc, .wave-list-record__timestamp--wlc{
+  flex: 0 0 15%;
+}
+
+.wave-list--container .ca-child-b__heading--wlc, .wave-list-record__txn--wlc{
+  flex: 0 0 30%;
+  overflow-wrap: anywhere;
+}

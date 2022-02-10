@@ -1,0 +1,34 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.wave-portal--container {
+  max-width: 1024px;
+  margin: 0px auto;
+  padding: 0px 5px;
+  border: 1px solid #d4d4d4;
+  display: flex;
+  flex-direction: column;
+}
+
+.line-break {
+  height: 1px;
+  background-color: #c7c7c7;
+  margin-top: 5px;
+}
+
+.wave-portal--container .child-a--wpc {
+  height: 70px;
+  align-self: stretch;
+  text-align: center;
+  line-height: 70px;
+  font-weight: bold;
+}
+
+.wave-portal--container .child-c--wpc {
+  height: 50px;
+  align-self: center;
+  line-height: 50px;
+}

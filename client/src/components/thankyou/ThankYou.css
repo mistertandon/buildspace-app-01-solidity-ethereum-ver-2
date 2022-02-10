@@ -1,0 +1,10 @@
+.thank-you--container{
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.thank-you--container .child-a--tyc{
+  font-style: italic;
+}

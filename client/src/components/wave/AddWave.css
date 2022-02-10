@@ -1,0 +1,61 @@
+.add-wave--container{
+  width: 100%
+}
+.add-wave-form--container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.add-wave--container .child-a--awc{
+  flex: 0 0 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.add-wave--container .ca-child-a--awc{
+  flex: 0 0 70%;
+  align-self: flex-end;
+}
+
+.add-wave--container .caca-child-a__input--awc{
+  width: 100%;
+  padding: 5px;
+  outline: none;
+  border: 1px solid #C7C7C7;
+  border-radius: 10px;
+}
+
+.add-wave--container .ca-child-b--awc{
+  flex: 0 0 30%;
+  align-self: flex-end;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+.add-wave--container .child-b--awc{
+  flex: 0 0 10%;
+  align-self: flex-end;
+  
+}
+.add-wave--container .cacb-child-a__button--awc{
+  height: 30px;
+  padding: 5px;
+  border-radius: 6px;
+  box-shadow: 1px 1px 1px 1px #EDEDED;
+  border: 1px solid #C7C7C7;
+  color: #545454;
+}
+
+.add-wave--container .child-b--awc{
+  flex: 0 0 40%;
+}
+
+.highlight-field-with-error{
+  border: 1px solid #ff0000 !important;
+}
+
+.display-error-message{
+  color: #ff0000;
+}
