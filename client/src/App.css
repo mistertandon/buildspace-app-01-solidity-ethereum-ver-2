@@ -19,14 +19,6 @@
   margin-top: 5px;
 }
 
-.wave-portal--container .child-a--wpc {
-  height: 70px;
-  align-self: stretch;
-  text-align: center;
-  line-height: 70px;
-  font-weight: bold;
-}
-
 .wave-portal--container .child-c--wpc {
   height: 50px;
   align-self: center;

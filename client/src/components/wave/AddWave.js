@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { ethers } from "ethers";
 import "./AddWave.css";
+import { WalletContext } from "../../contexts/WalletContext";
 import Contact from "../contact/Contact";
 
 const AddWave = ({ classFromParent }) => {
+  const { handleWaveRequest, addWaveLoaderStatus } = useContext(WalletContext);
+
   const [classFromParentRef, setClassFromParent] = useState("");
 
   const [formFields, setFormFields] = useState({ message: "" });
@@ -29,6 +33,8 @@ const AddWave = ({ classFromParent }) => {
       setFormFieldsErrors({ ...formFieldsErrors, message: true });
     } else {
       setFormFieldsErrors({ ...formFieldsErrors, message: false });
+      await handleWaveRequest(formFields["message"]);
+      setFormFields({ message: "" });
     }
 
     setDisableFormSubmission(false);
@@ -59,7 +65,12 @@ const AddWave = ({ classFromParent }) => {
               />
             </div>
             <div className="ca-child-b--awc">
-              <button className="cacb-child-a__button--awc">Add Wave</button>
+              <button
+                className="cacb-child-a__button--awc"
+                disabled={addWaveLoaderStatus}
+              >
+                Add Wave
+              </button>
             </div>
           </div>
 

@@ -12,7 +12,7 @@ const main = async () => {
   console.log(`WavePortal contract address: ${wavePortalContract.address}`);
   console.log(`WavePortal contract deployed by: ${owner}\n`);
 
-  let totalWaveCount = await wavePortalContract.getTotalWaves();
+  await wavePortalContract.getTotalWaves();
 
   console.log(`\nStep 2: Waving at ourself`);
   let waveTxn = await wavePortalContract.wave(
