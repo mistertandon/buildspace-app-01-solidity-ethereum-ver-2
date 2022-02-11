@@ -11,7 +11,7 @@ contract WavePortal{
     event NewWave(address indexed from, uint256 timestamp , string message);
 
     constructor(){
-        console.log('Hi from WavePortal contract');
+        console.log('Hi from WavePortal contract\n');
     }
 
     struct Wave{
