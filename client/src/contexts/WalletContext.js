@@ -5,6 +5,8 @@ import abi from "./../utils/wavePortal.json";
 export const WalletContext = createContext();
 
 export const WalletProvider = ({ children }) => {
+  const [waveListVersion, setWaveListVersion] = useState(0);
+
   const [addWaveLoaderStatus, setAddWaveLoaderStatus] = useState(false);
 
   const [contractAddress] = useState(
@@ -47,11 +49,35 @@ export const WalletProvider = ({ children }) => {
 
       let waveTxn = await waveContract.wave(message);
       await waveTxn.wait();
+      setWaveListVersion((prevValue) => prevValue + 1);
+
       console.log("Wave has been added");
     } catch (error) {
       console.log(error);
     } finally {
       setAddWaveLoaderStatus(false);
+    }
+  };
+
+  const retrieveAllWaves = async () => {
+    try {
+      const { ethereum } = window;
+      const providerRef = new ethers.providers.Web3Provider(ethereum);
+
+      const signer = providerRef.getSigner();
+
+      const waveContract = new ethers.Contract(
+        contractAddress,
+        ContractABI,
+        signer
+      );
+
+      let waves = await waveContract.getAllWaves();
+      console.log(waves.length);
+      return waves;
+    } catch (error) {
+      console.log(error);
+    } finally {
     }
   };
 
@@ -61,7 +87,9 @@ export const WalletProvider = ({ children }) => {
         contractAddress,
         account,
         ContractABI,
+        waveListVersion,
         handleConnectionRequest,
+        retrieveAllWaves,
         handleWaveRequest,
         addWaveLoaderStatus,
       }}

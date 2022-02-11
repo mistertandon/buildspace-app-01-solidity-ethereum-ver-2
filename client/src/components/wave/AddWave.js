@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-import { ethers } from "ethers";
 import "./AddWave.css";
 import { WalletContext } from "../../contexts/WalletContext";
 import Contact from "../contact/Contact";
@@ -67,7 +66,7 @@ const AddWave = ({ classFromParent }) => {
             <div className="ca-child-b--awc">
               <button
                 className="cacb-child-a__button--awc"
-                disabled={addWaveLoaderStatus}
+                disabled={addWaveLoaderStatus || disableFormSubmission}
               >
                 Add Wave
               </button>
