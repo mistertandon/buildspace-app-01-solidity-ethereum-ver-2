@@ -8,11 +8,9 @@ contract WavePortal{
 
     uint256 totalWaves;
 
-    event NewWave(address indexed from, uint256 timestamp , string message);
+    uint256 private seed;
 
-    constructor(){
-        console.log('Hi from WavePortal contract\n');
-    }
+    mapping(address => uint256) public lastWavedAt;
 
     struct Wave{
         address waver;
@@ -22,15 +20,46 @@ contract WavePortal{
 
     Wave[] waves;
 
+    event NewWave(address indexed from, uint256 timestamp , string message);
+
+    constructor() payable {
+        console.log('Hi from WavePortal contract');
+
+        seed = (block.difficulty + block.timestamp) % 100;
+    }
+
+
+
     function wave(string memory _message) public {
+
+        require(
+            lastWavedAt[msg.sender] + 15 minutes < block.timestamp,
+            "Wait for 15 minutes"
+        );
+
+        lastWavedAt[msg.sender] = block.timestamp;
+        
         totalWaves +=1;
         console.log("%s waved w/ message %s: ", msg.sender, _message);
 
         waves.push(Wave(msg.sender, _message, block.timestamp));
-        console.log("New wave has been pushed from sender %s", msg.sender);
+        console.log("New wave has been added by sender %s", msg.sender);
+
+        seed = (block.difficulty + block.timestamp + seed) % 100;
+        console.log("Randon # generated %d ", seed);
         
-        emit NewWave(msg.sender, block.timestamp,_message);
+        if(seed < 50){
+            uint256 prizeMoney = 0.001 ether;
+
+            require(prizeMoney <= address(this).balance, "Trying to withdraw more money than the contract has");
+            (bool success, ) = (msg.sender).call{value: prizeMoney}("");
+
+            require(success, "Failed to withdraw money from smart contract");
+        }
+
+        emit NewWave(msg.sender, block.timestamp, _message);
         console.log("Event NewWave has been emitted");
+
     }
 
     function getAllWaves() public view returns (Wave[] memory){

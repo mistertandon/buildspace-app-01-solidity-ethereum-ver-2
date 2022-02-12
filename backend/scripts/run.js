@@ -5,12 +5,23 @@ const main = async () => {
     "WavePortal"
   );
 
-  const wavePortalContract = await wavePortalContractFactory.deploy();
+  const wavePortalContract = await wavePortalContractFactory.deploy({
+    value: hre.ethers.utils.parseEther("0.005"),
+  });
 
   await wavePortalContract.deployed();
 
   console.log(`WavePortal contract address: ${wavePortalContract.address}`);
   console.log(`WavePortal contract deployed by: ${owner}\n`);
+
+  let contractBalance = await hre.ethers.provider.getBalance(
+    wavePortalContract.address
+  );
+
+  console.log(
+    "Contract balance : ",
+    hre.ethers.utils.formatEther(contractBalance)
+  );
 
   await wavePortalContract.getTotalWaves();
 
@@ -22,15 +33,32 @@ const main = async () => {
 
   await wavePortalContract.getTotalWaves();
 
-  console.log(`\nStep 3: Waving at ourself`);
+  contractBalance = await hre.ethers.provider.getBalance(
+    wavePortalContract.address
+  );
 
-  waveTxn = await wavePortalContract
-    .connect(randomUser)
-    .wave("Random user waved at you, something good is happening");
+  console.log(
+    "Contract balance : ",
+    hre.ethers.utils.formatEther(contractBalance)
+  );
+
+  await wavePortalContract.getTotalWaves();
+
+  console.log(`\nStep 3: Waving by random user`);
+  waveTxn = await wavePortalContract.wave(
+    "Wave by random user to check how things are going on"
+  );
 
   await waveTxn.wait();
 
-  await wavePortalContract.getTotalWaves();
+  contractBalance = await hre.ethers.provider.getBalance(
+    wavePortalContract.address
+  );
+
+  console.log(
+    "Contract balance : ",
+    hre.ethers.utils.formatEther(contractBalance)
+  );
 
   let allWaves = await wavePortalContract.getAllWaves();
   console.log(allWaves);

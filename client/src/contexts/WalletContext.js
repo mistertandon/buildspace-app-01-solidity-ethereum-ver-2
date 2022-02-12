@@ -10,7 +10,7 @@ export const WalletProvider = ({ children }) => {
   const [addWaveLoaderStatus, setAddWaveLoaderStatus] = useState(false);
 
   const [contractAddress] = useState(
-    "0xa338e049177aae1db1f9710ede0d75b1cb519642"
+    "0xB14a1C89C44e81046c84573c4fC7EC39d18D467b"
   );
 
   const { abi: ContractABI } = abi;
